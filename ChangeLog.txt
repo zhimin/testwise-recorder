@@ -1,0 +1,16 @@
+1.0.3
+ Record file upload
+ Display correct comment "#" instead of "//" 
+
+1.0.2
+ [Fixes - TODO] not recording checkbox by id
+ [Feature] Add the help text at the bottom of the editor
+ [Fixes] iTest2 select by id does not record text
+ [Enhancements] Test page 
+
+1.0.1 Recorder (2008-12-01)
+==============
+ [Feature] Add Watir recording
+ [Feature] Support click link with id when there is not name field
+ [Feature] Support textarea
+ [Fixes] Checkbox now working correctly

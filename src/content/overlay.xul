@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE overlay SYSTEM "chrome://itest2recorder/locale/overlay.dtd">
+
+<overlay id="itest2recorder-overlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<script type="application/x-javascript" src="chrome://itest2recorder/content/WTRStep.js" />
+	<script type="application/x-javascript" src="chrome://itest2recorder/content/myThis.js" />
+	<script type="application/x-javascript" src="chrome://itest2recorder/content/log.js" />
+	<script type="application/x-javascript" src="chrome://itest2recorder/content/WTR_base.js" />
+	<script type="application/x-javascript" src="chrome://itest2recorder/content/preferences.js" />
+	<script type="application/x-javascript" src="chrome://itest2recorder/content/overlay.js" />
+	<script type="application/x-javascript" src="chrome://itest2recorder/content/webtest-steps.js" />
+
+	<commandset id="mainCommandSet">
+		<command id="itest2_cmd_ShowSidebar" oncommand="WTR_Overlay.ShowSidebar()"/>
+	</commandset>
+
+	<broadcasterset id="mainBroadcasterSet">
+		<broadcaster label="&itest2recorder.label;" group="sidebar" id="webtestRecorderSidebar"
+			sidebarurl="chrome://itest2recorder/content/itest2recorder.xul" sidebartitle="iTest2 Recorder"/>
+	</broadcasterset>
+
+	<keyset id="mainKeyset">
+		<key id="itest2_key_ShowSidebar" key="R" command="itest2_cmd_ShowSidebar" modifiers="alt,shift"/>
+	</keyset>
+
+	<menupopup id="menu_ToolsPopup">
+		<menuitem label="iTest2 Recorder Sidebar" command="itest2_cmd_ShowSidebar" key="itest2_key_ShowSidebar"
+			id="wtr_ToolMenuItem" type="checkbox"/>
+	</menupopup>
+
+	<popup id="contentAreaContextMenu">
+		<menuitem id="wtr_cmdVerifyText" label="&itest2recorder.contextmenu.verifyText;" position="1" oncommand="WTR_Overlay.addVerifyText(event)"
+			hidden="true" />
+		<menuitem id="wtr_cmdVerifyTitle" label="Add verifyTitle for this page: " position="2" oncommand="WTR_Overlay.addVerifyTitle(event)"
+			hidden="true" />
+		<menuitem id="wtr_cmdVerifySelectField" label="Add verifySelectField for " position="3" oncommand="WTR_Overlay.addVerifySelectField(event)"
+			hidden="true" />
+		<menuitem id="wtr_cmdVerifyInputField" label="Add verifyInputField for " position="4" oncommand="WTR_Overlay.addVerifyInputField(event)"
+			hidden="true" />
+		<menuitem id="wtr_cmdVerifyTextArea" label="Add verifyTextArea for " position="5" oncommand="WTR_Overlay.addVerifyTextArea(event)"
+			hidden="true" />
+		<menuitem id="wtr_cmdMakeLinksLive" label="Make links live" position="6" oncommand="WTR_Overlay.makeLinksLive(event)"
+			hidden="true" />
+		<menuseparator id="wtr_cmdSeparatorBeforeVerifyText" position="7" hidden="true" />
+	</popup>
+</overlay>

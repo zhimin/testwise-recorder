@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE window [
+	<!ENTITY xpath.coltype.tooltip "The type of the node">
+	<!ENTITY steps.source.wrap "Wrap text">
+]
+>
+
+<?xml-stylesheet href="chrome://global/skin" type="text/css"?>
+<?xml-stylesheet href="chrome://itest2recorder/content/webtest.css" type="text/css"?>
+
+<window title="iTest Recorder" id="webtest-recorder" windowtype="global:webtest-recorder"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+onload="WTR_Sidebar.onLoad(event)" onunload="WTR_Sidebar.onUnload(event)">
+	<script type="application/x-javascript" src="chrome://itest2recorder/content/myThis.js" />
+	<script type="application/x-javascript" src="chrome://itest2recorder/content/preferences.js" />
+	<script type="application/x-javascript" src="chrome://itest2recorder/content/log.js" />
+	<script type="application/x-javascript" src="chrome://itest2recorder/content/WTRStep.js" />
+
+	<script type="application/x-javascript" src="chrome://itest2recorder/content/WTR_base.js" />
+	<script type="application/x-javascript" src="chrome://itest2recorder/content/webtest-steps.js" />
+	<script type="application/x-javascript" src="chrome://itest2recorder/content/itest2recorder.js" />
+	<script type="application/x-javascript" src="chrome://itest2recorder/content/stylesheet_utils.js" />
+	<script type="application/x-javascript" src="chrome://itest2recorder/content/sidebar.js" />
+	<script type="application/x-javascript" src="chrome://itest2recorder/content/WTREditorCtxMenu.js" />
+
+	<keyset>
+		<key id="close-key" modifiers="accel" key="W" oncommand="window.close();" />
+	</keyset>
+
+	<toolbar>
+	    <toolbarbutton id="record-button" label="Record " class="icon" tooltiptext="Start/Pause recording" checked="true" onclick="this.checked = !this.checked" oncommand="wtr_Misc.toggleRecordingEnabled(this.checked)"/>
+		<spacer flex="1" />
+		<label id="status_label">Recording...</label>
+	</toolbar>
+
+
+	<vbox flex="5">
+		<tabbox flex="5">
+			<tabs align="left">
+				<tab label="  rWebUnit  " selected="true"/>
+				<tab label="  Watir  "/>
+				
+			</tabs>
+			<tabpanels flex="1">
+				<tabpanel id="tabPrettyXML" orient="vertical" class="editorTabPanel" context="editorContextMenu">
+					<iframe id="edSource" src="chrome://itest2recorder/content/editors/itest2.html" style="border: 1px solid #000000; margin-top: 2px;margin-left: 1px;" flex="1"/>
+					<label class="editor_bottom">Right mouse click to copy the steps above, paste into <a href="http://www.itest2.com">iTest2 IDE</a> to run.</label>
+				</tabpanel>
+				<tabpanel id="tabSourceWatir" orient="vertical" context="editorContextMenu">
+					<iframe id="edSourceWatir" src="chrome://itest2recorder/content/editors/watir.html" style="border: 1px solid #000000; margin-top: 2px;margin-left: 1px;"  flex="1"/>
+					<label class="editor_bottom">Right mouse click to copy the steps above, append <span class="code">require 'watir'</span> in front.</label>
+				</tabpanel>		
+			</tabpanels>
+		</tabbox>
+
+	
+		<menupopup id="editorContextMenu" onpopupshowing="WTREditorCtxMenu.onPopupShowing(this)">
+      <menuitem label="No alternative available" id="editorCtxMenu_noAlternative" disabled="true"/>
+      <menuitem label="-" id="alternative0" hidden="true" oncommand="WTREditorCtxMenu.showAlternative(this)"/>
+      <menuitem label="-" id="alternative1" hidden="true" oncommand="WTREditorCtxMenu.showAlternative(this)"/>
+      <menuitem label="-" id="alternative2" hidden="true" oncommand="WTREditorCtxMenu.showAlternative(this)"/>
+      <menuitem label="-" id="alternative3" hidden="true" oncommand="WTREditorCtxMenu.showAlternative(this)"/>
+      <menuitem label="-" id="alternative4" hidden="true" oncommand="WTREditorCtxMenu.showAlternative(this)"/>
+      <menuseparator/>		
+		  <menuitem label="Copy all" oncommand="WTREditorCtxMenu.copyToClipboard(this)"/>
+		  <menuitem label="Delete all" oncommand="WTREditorCtxMenu.deleteAll(this)"/>
+		</menupopup>
+
+		<separator flex="0"/>
+
+	</vbox>
+</window>
+

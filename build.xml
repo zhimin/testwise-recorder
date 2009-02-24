@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!--
+/*******************************************************************************
+ * Copyright (c) 2006 Marc Guillemot.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Marc Guillemot - initial version
+ *******************************************************************************/
+-->
+
+<project name="itest2recorder" default="create-xpi">
+
+  <!-- load properties from custom and base property files (if they exist) -->
+  <property file="build.properties"/>
+  <property file="build.base.properties"/>
+
+  <property name="remote.repository" value="http://www.ibiblio.org/maven"/>
+
+
+  <property name="jars.dir" value="ant-jars"/>
+  <property name="targetDir" value="target"/>
+  <property name="distDir" value="dist/dist"/>
+  <property name="rhinoJar" value="${jars.dir}/js-1.6R7.jar"/>
+
+  <property name="update.path" value="http://itest2.com/releases"/>
+  <property name="RELEASE" value=""/>
+  <property name="VERSION" value="1.0"/>
+
+  <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+  <target name="prepare" description="creates the directories">
+    <tstamp>
+      <format property="today" pattern="yyyyMMdd"/>
+    </tstamp>
+    <!-- <buildnumber/> -->
+    <property name="versionNumber" value="0.9.${today}"/>
+    <echo message="Extension version: ${versionNumber}"/>
+    <mkdir dir="${targetDir}"/>
+    <mkdir dir="${targetDir}/chrome"/>
+    <mkdir dir="${targetDir}/src"/>
+    <mkdir dir="${targetDir}/dist"/>
+  </target>
+
+  <target name="clean">
+    <delete dir="${targetDir}"/>
+  </target>
+
+  <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+  <target name="create-jar" depends="compile, test">
+    <zip destfile="${targetDir}/chrome/${ant.project.name}.jar">
+      <fileset dir="${targetDir}/src">
+        <include name="content/**"/>
+        <include name="locale/**/*"/>
+        <include name="defaults/**/*"/>
+      </fileset>
+    </zip>
+  </target>
+
+  <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+  <target name="test" depends="compile" description="runs the unit tests">
+    <java dir="target/classes/content" classname="org.mozilla.javascript.tools.shell.Main" failonerror="true"
+          logError="true"
+          classpath="${rhinoJar}" fork="true">
+      <arg line="-f itest2recorderTest.js overlayTest.js myThisTest.js"/>
+    </java>
+  </target>
+
+  <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+  <target name="compile" depends="prepare, get-dependencies" description="pseudo compilation">
+    <mkdir dir="${targetDir}/classes"/>
+    <!-- remove "const " as rhino seem to dislike it -->
+    <copy todir="${targetDir}/classes" overwrite="true">
+      <fileset dir="src" includes="**/*.js"/>
+      <filterset begintoken="c" endtoken=" ">
+        <filter token="onst" value=""/>
+      </filterset>
+    </copy>
+    <echo message="running js compiler on script files"/>
+    <apply executable="java" failonerror="true" logError="true">
+      <arg value="-cp"/>
+      <arg value="${rhinoJar}"/>
+      <arg value="org.mozilla.javascript.tools.jsc.Main"/>
+
+      <fileset dir="${targetDir}/classes" includes="**/*.js"/>
+    </apply>
+
+    <mkdir dir="${targetDir}/src"/>
+    <copy todir="${targetDir}/src" overwrite="true">
+      <fileset dir="src">
+        <include name="install.rdf"/>
+        <include name="chrome.manifest"/>
+        <include name="update.rdf"/>
+      </fileset>
+      <filterset>
+        <filter token="versionNumber" value="${versionNumber}"/>
+        <filter token="updateLink" value="${updateLink}"/>
+        <filter token="updateUrl" value="${updateUrl}"/>
+        <filter token="extension.id" value="${extension.id}"/>
+      </filterset>
+    </copy>
+
+    <copy todir="${targetDir}/dist" overwrite="true">
+      <fileset dir="${targetDir}/src">
+        <include name="update.rdf"/>
+      </fileset>
+    </copy>
+
+    <property name="binaries" value="**/*.png"/>
+    <copy todir="${targetDir}/src" overwrite="true">
+      <fileset dir="src" excludes="${binaries}">
+        <include name="content/**/*"/>
+        <include name="locale/**/*"/>
+        <include name="defaults/**/*"/>
+      </fileset>
+      <filterset>
+        <filter token="Copyright Marc Guillemot" value="Copyright 2005 - 2006 © Marc Guillemot"/>
+        <filter token="versionNumber" value="${versionNumber}"/>
+      </filterset>
+    </copy>
+    <copy todir="${targetDir}/src" overwrite="true">
+      <fileset dir="src" includes="${binaries}"/>
+    </copy>
+  </target>
+
+  <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+  <target name="create-xpi" depends="create-jar, expand-update-template">
+    <echo message="Creating XPI file"/>
+    <zip destfile="${targetDir}/dist/${ant.project.name}.xpi">
+      <fileset dir="${targetDir}">
+        <include name="chrome/*"/>
+      </fileset>
+      <fileset dir="${targetDir}/src">
+        <include name="install.rdf"/>
+        <include name="chrome.manifest"/>
+        <include name="defaults/**"/>
+        <include name="locale/**"/>
+      </fileset>
+    </zip>
+  </target>
+
+  <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+  <target name="dist" depends="create-xpi" description="copies the generated files where they can be downloaded">
+    <echo message="Copying to ${distDir}"/>
+    <copy todir="${distDir}" overwrite="true">
+      <fileset dir="${targetDir}/dist" includes="*"/>
+    </copy>
+  </target>
+
+  <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+  <target name="get-dependencies" unless="skip.get-dependencies"
+          description="Get all the required dependencies from a remote repository">
+    <mkdir dir="${jars.dir}"/>
+
+    <!--<get usetimestamp="true"-->
+    <!--src="${remote.repository}/rhino/jars/js-1.6R7.jar"-->
+    <!--dest="${jars.dir}/js-1.6R7.jar"/>-->
+  </target>
+
+  <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+  <target name="cruise" depends="dist"
+          description="to be started by the CruiseControl build server">
+  </target>
+
+
+  <target name="expand-update-template"  unless="update.expansion.notRequired">
+    <copy file="src/update.rdf.tpl.xml"
+          tofile="${targetDir}/dist/update.rdf"
+          overwrite="true">
+      <filterchain>
+        <replacetokens>
+          <token key="VERSION" value="${VERSION}"/>
+          <token key="RELEASE" value="${RELEASE}"/>
+          <token key="LEAF" value="itest2recorder-${VERSION}${RELEASE}.xpi"/>
+          <token key="UPDATEPATH" value="${update.path}/firebug/${VERSION}"/>
+        </replacetokens>
+      </filterchain>
+    </copy>
+    <echo message="expanded src/update.rdf.tpl.xml"/>
+  </target>
+
+</project>
