@@ -214,10 +214,12 @@ WTR_Overlay.addVerifySelectField = function(_oEvent)
 	try
 	{
 		var focusedElement = document.popupNode;
-
+		var childSelectElement = focusedElement.childNodes[1];
 		var oStep = new WTRStep("verifySelectField", {
-			name: focusedElement.name,
-			value: focusedElement.value,
+			name: childSelectElement.name,
+			value: childSelectElement.value,
+			htmlId: childSelectElement.id,
+			tagName: childSelectElement.tagName,								
 			description: "Verify the value of the select value"
 			});
 
@@ -239,7 +241,6 @@ WTR_Overlay.addVerifyInputField = function(_oEvent)
 	try
 	{
 		var focusedElement = document.popupNode;
-
 		var oStep = new WTRStep("verifyInputField", {
 			value: focusedElement.value,
 			name: focusedElement.name,

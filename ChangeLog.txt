@@ -1,3 +1,6 @@
+1.0.4
+ New: verifySelectField
+
 1.0.3
  Record file upload
  Display correct comment "#" instead of "//" 

@@ -154,3 +154,8 @@ conversions["verifyInputField"] = function(oStep)
   }
 }
 
+conversions["verifySelectField"] = function(oStep)
+{
+  var tagName = "select_list";
+  return tagName + '(:id, "' + oStep.htmlId + '").value.should == "' + oStep.value + '"';
+}

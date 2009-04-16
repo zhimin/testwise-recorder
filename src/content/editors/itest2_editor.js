@@ -176,6 +176,9 @@ conversions["verifyInputField"] = function(oStep)
   }
 }
 
-
+conversions["verifySelectField"] = function (oStep) 
+{  
+  return 'assert_select_value("' +  oStep.htmlId + '", "' + oStep.value + '")'
+}
 
 

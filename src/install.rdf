@@ -7,7 +7,7 @@
 
     <em:name>iTest2/Watir Test Recorder</em:name>
     <em:id>@extension.id@</em:id>
-    <em:version>1.0.3</em:version>
+    <em:version>1.0.4</em:version>
     <em:type>2</em:type>
     <em:description>Recording tool to help creating automated test scripts (rWebUnit and Watir) for web applications
     </em:description>

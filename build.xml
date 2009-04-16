@@ -37,7 +37,7 @@
       <format property="today" pattern="yyyyMMdd"/>
     </tstamp>
     <!-- <buildnumber/> -->
-    <property name="versionNumber" value="0.9.${today}"/>
+    <property name="versionNumber" value="1.0.4"/>
     <echo message="Extension version: ${versionNumber}"/>
     <mkdir dir="${targetDir}"/>
     <mkdir dir="${targetDir}/chrome"/>
