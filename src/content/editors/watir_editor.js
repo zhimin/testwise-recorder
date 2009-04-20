@@ -73,6 +73,8 @@ conversions["clickButton"] = function(oStep)
     by = 'browser.button(:name, "' + oStep.name + '").click'
   else if (oStep.label)
     by = 'browser.button(:value,"' + oStep.label + '").click'
+  else if (oStep.src) 
+    by = 'browser.button(:src,"' + oStep.src+ '").click'
   return by;
 }
 

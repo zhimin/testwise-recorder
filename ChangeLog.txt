@@ -1,6 +1,8 @@
-1.0.4
+1.0.4 (2009-04-20)
  New: verifySelectField
-
+ New: recording image button <input type="image" src="..."/>
+ Fixes: add click_button_with_name for iTest2 script
+ 
 1.0.3
  Record file upload
  Display correct comment "#" instead of "//" 

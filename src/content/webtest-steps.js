@@ -163,9 +163,9 @@ WTR_ButtonLocator.locate = function(_oTarget)
   var stepsVariations = []
   if (_oTarget.tagName == 'INPUT')
   {
-    if (_oTarget.type.toLowerCase() == "image" && _oTarget.alt)
+    if (_oTarget.type.toLowerCase() == "image" && _oTarget.src)
     {
-      stepsVariations.push(new WTRStep("clickButton", {label: _oTarget.alt}))
+      stepsVariations.push(new WTRStep("clickButton", {src: _oTarget.src}))
     }
     else
     {

@@ -79,7 +79,10 @@ conversions["clickButton"] = function(oStep)
     by = 'click_button_with_id("' + oStep.htmlId + '")'
   else if (oStep.label)
     by = 'click_button("' + oStep.label + '")'
-
+  else if (oStep.name)
+  	by = 'click_button_with_name("' + oStep.name + '")'
+  else if (oStep.src)
+  	by = 'click_button_with_image("' + oStep.src+ '")'
   return by;
 }
 
