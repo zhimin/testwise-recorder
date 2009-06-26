@@ -1,3 +1,9 @@
+1.0.6 (2009-06-25)
+ fixes not recording checkboxes not in forms
+
+1.0.5 (2009-06-10)
+ clicking_image_with_src
+
 1.0.4 (2009-04-20)
  New: verifySelectField
  New: recording image button <input type="image" src="..."/>

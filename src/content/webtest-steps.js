@@ -136,11 +136,10 @@ wtr_Misc.handleDocumentLoad = function (_event)
     if (top.document.getElementById("content").contentDocument == _event.originalTarget)
     {
       var oDoc = _event.originalTarget;
-      if (!oDoc.referrer)
+      if (!oDoc.referrer && oDoc.location != null)
       {
         var oStep = new WTRStep("invoke", {url: oDoc.location.href})
-
-			//	myThis._getWebtestRecorder().addStep(oStep);
+		//	myThis._getWebtestRecorder().addStep(oStep);
       }
       else
         myThis.log.debug("Not loaded by invoke: " + oDoc.location);
@@ -302,6 +301,9 @@ wtr_Misc._getAssociatedLabel = function(_oField)
  */
 wtr_Misc.getFieldByName = function(_oForm, _strName)
 {
+  if (_oForm == null)
+  	return null;
+  
   var result = [];
   for (var i = 0; i < _oForm.elements.length; ++i)
   {
