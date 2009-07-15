@@ -21,7 +21,7 @@
       </Description>
     </em:targetApplication>
     <em:iconURL>chrome://itest2recorder/content/itest2.png</em:iconURL>
-    <em:updateURL>http://itest2.com/itest2recorder/update.rdf</em:updateURL>
+    <!--<em:updateURL>https://itest2.com/itest2recorder/update.rdf</em:updateURL>-->
     <em:file>
       <Description about="urn:mozilla:extension:file:itest2recorder.jar">
         <em:package>content/</em:package>
