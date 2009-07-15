@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-
 <!--
 /*******************************************************************************
- * Copyright (c) 2006 Marc Guillemot.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *    Marc Guillemot - initial version
- *******************************************************************************/
+ * Copyright (c) 2008-2009 Zhimin Zhan
+ * All rights reserved. 
+ * Eclipse Public License v1.0
+ */
 -->
 
 <project name="itest2recorder" default="create-xpi">
@@ -20,7 +14,6 @@
   <property file="build.base.properties"/>
 
   <property name="remote.repository" value="http://www.ibiblio.org/maven"/>
-
 
   <property name="jars.dir" value="ant-jars"/>
   <property name="targetDir" value="target"/>
@@ -37,7 +30,7 @@
       <format property="today" pattern="yyyyMMdd"/>
     </tstamp>
     <!-- <buildnumber/> -->
-    <property name="versionNumber" value="1.0.6"/>
+    <property name="versionNumber" value="1.1"/>
     <echo message="Extension version: ${versionNumber}"/>
     <mkdir dir="${targetDir}"/>
     <mkdir dir="${targetDir}/chrome"/>

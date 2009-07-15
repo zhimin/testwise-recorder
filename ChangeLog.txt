@@ -1,3 +1,6 @@
+1.1 
+ - support Firefox 3.5
+
 1.0.6 (2009-06-25)
  fixes not recording checkboxes not in forms
 
