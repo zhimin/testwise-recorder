@@ -13,7 +13,7 @@
     chrome:authorURL="http://itest2.com"
     chrome:name="itest2recorder"
     chrome:extension="true"
-    chrome:description="Captures your actions in Firefox and generates RWebUnit tests/specs">
+    chrome:description="Captures your actions in Firefox and generates RWebSpec tests/specs">
   </RDF:Description>
  
   <RDF:Seq about="urn:mozilla:overlays">

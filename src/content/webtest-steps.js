@@ -14,7 +14,7 @@
 var wtr_Misc = new WTR_base();
 wtr_Misc.myThis = wtr_Misc;
 
-wtr_Misc.log = new Log("rwebunit-steps");
+wtr_Misc.log = new Log("rwebspec-steps");
 var itest_recorded_enabled = true;
 
 

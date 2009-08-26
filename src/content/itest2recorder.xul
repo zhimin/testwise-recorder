@@ -37,7 +37,7 @@ onload="WTR_Sidebar.onLoad(event)" onunload="WTR_Sidebar.onUnload(event)">
 	<vbox flex="5">
 		<tabbox flex="5">
 			<tabs align="left">
-				<tab label="  rWebUnit  " selected="true"/>
+				<tab label="  RWebSpec  " selected="true"/>
 				<tab label="  Watir  "/>
 				
 			</tabs>
