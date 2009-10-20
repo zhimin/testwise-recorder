@@ -222,7 +222,9 @@ wtr_Misc.HandlerClick = function(_oEvent)
         || strType == "button" || strType == "reset"))
         || oTarget.tagName == "BUTTON")
     {
-      myThis._getWebtestRecorder().addStep(WTR_ButtonLocator.locate(oTarget), oTarget);
+    	if (myThis._getWebtestRecorder()) {    		
+      		myThis._getWebtestRecorder().addStep(WTR_ButtonLocator.locate(oTarget), oTarget);
+      	}
     }
     else
     {

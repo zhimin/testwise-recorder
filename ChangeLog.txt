@@ -1,3 +1,6 @@
+1.1.2
+ - general fixes
+
 1.1 
  - support Firefox 3.5
 
