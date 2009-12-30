@@ -5,7 +5,7 @@ Unit tests
 load("UnitTestUtils.js");
 load("log.js");
 load("WTRStep.js");
-load("itest2recorder.js");
+load("testwise_recorder.js");
 
 function assertEquals(_oExpected, _oReal)
 {

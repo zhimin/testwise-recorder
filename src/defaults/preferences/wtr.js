@@ -9,6 +9,6 @@
  *    Marc Guillemot - initial version
  *******************************************************************************/
 
-pref("itest2recorder.buttonLocator", "ByName");
-pref("itest2recorder.debug.show", "");
-pref("itest2recorder.originalversion", "@versionNumber@");
+pref("testwise_recorder.buttonLocator", "ByName");
+pref("testwise_recorder.debug.show", "");
+pref("testwise_recorder.originalversion", "@versionNumber@");

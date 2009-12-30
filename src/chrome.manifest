@@ -1,3 +1,3 @@
-content	itest2recorder	jar:chrome/itest2recorder.jar!/content/
-locale  itest2recorder en-US       jar:chrome/itest2recorder.jar!/locale/en-US/itest2recorder/
-overlay	chrome://browser/content/browser.xul	chrome://itest2recorder/content/overlay.xul
+content	testwise_recorder	jar:chrome/testwise_recorder.jar!/content/
+locale  testwise_recorder en-US       jar:chrome/testwise_recorder.jar!/locale/en-US/testwise_recorder/
+overlay	chrome://browser/content/browser.xul	chrome://testwise_recorder/content/overlay.xul

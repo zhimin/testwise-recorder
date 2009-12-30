@@ -7,7 +7,7 @@
  */
 -->
 
-<project name="itest2recorder" default="create-xpi">
+<project name="testwise_recorder" default="create-xpi">
 
   <!-- load properties from custom and base property files (if they exist) -->
   <property file="build.properties"/>
@@ -20,7 +20,7 @@
   <property name="distDir" value="dist/dist"/>
   <property name="rhinoJar" value="${jars.dir}/js-1.6R7.jar"/>
 
-  <property name="update.path" value="http://itest2.com/releases"/>
+  <property name="update.path" value="http://testwisely.com/releases"/>
   <property name="RELEASE" value=""/>
   <property name="VERSION" value="1.0"/>
 
@@ -30,7 +30,7 @@
       <format property="today" pattern="yyyyMMdd"/>
     </tstamp>
     <!-- <buildnumber/> -->
-    <property name="versionNumber" value="1.1.2"/>
+    <property name="versionNumber" value="1.2"/>
     <echo message="Extension version: ${versionNumber}"/>
     <mkdir dir="${targetDir}"/>
     <mkdir dir="${targetDir}/chrome"/>
@@ -58,7 +58,7 @@
     <java dir="target/classes/content" classname="org.mozilla.javascript.tools.shell.Main" failonerror="true"
           logError="true"
           classpath="${rhinoJar}" fork="true">
-      <arg line="-f itest2recorderTest.js overlayTest.js myThisTest.js"/>
+      <arg line="-f testwise_recorderTest.js overlayTest.js myThisTest.js"/>
     </java>
   </target>
 
@@ -167,7 +167,7 @@
         <replacetokens>
           <token key="VERSION" value="${VERSION}"/>
           <token key="RELEASE" value="${RELEASE}"/>
-          <token key="LEAF" value="itest2recorder-${VERSION}${RELEASE}.xpi"/>
+          <token key="LEAF" value="testwise_recorder-${VERSION}${RELEASE}.xpi"/>
           <token key="UPDATEPATH" value="${update.path}/firebug/${VERSION}"/>
         </replacetokens>
       </filterchain>

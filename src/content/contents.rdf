@@ -4,14 +4,14 @@
          xmlns:chrome="http://www.mozilla.org/rdf/chrome#"> 
 		   
   <RDF:Seq about="urn:mozilla:package:root">
-    <RDF:li resource="urn:mozilla:package:itest2recorder"/>
+    <RDF:li resource="urn:mozilla:package:testwise_recorder"/>
   </RDF:Seq>
   
-  <RDF:Description about="urn:mozilla:package:itest2recorder"
-    chrome:displayName="iTest Recorder"
+  <RDF:Description about="urn:mozilla:package:testwise_recorder"
+    chrome:displayName="TestWise Recorder"
     chrome:author="Zhimin Zhan"
-    chrome:authorURL="http://itest2.com"
-    chrome:name="itest2recorder"
+    chrome:authorURL="http://testwisely.com"
+    chrome:name="testwise_recorder"
     chrome:extension="true"
     chrome:description="Captures your actions in Firefox and generates RWebSpec tests/specs">
   </RDF:Description>
@@ -21,7 +21,7 @@
   </RDF:Seq>
     
   <RDF:Seq about="chrome://browser/content/browser.xul">
-    <RDF:li>chrome://itest2recorder/content/overlay.xul</RDF:li>
+    <RDF:li>chrome://testwise_recorder/content/overlay.xul</RDF:li>
   </RDF:Seq>
 
 </RDF:RDF>

@@ -1,35 +1,35 @@
 <?xml version="1.0"?>
-<!DOCTYPE overlay SYSTEM "chrome://itest2recorder/locale/overlay.dtd">
+<!DOCTYPE overlay SYSTEM "chrome://testwise_recorder/locale/overlay.dtd">
 
-<overlay id="itest2recorder-overlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-	<script type="application/x-javascript" src="chrome://itest2recorder/content/WTRStep.js" />
-	<script type="application/x-javascript" src="chrome://itest2recorder/content/myThis.js" />
-	<script type="application/x-javascript" src="chrome://itest2recorder/content/log.js" />
-	<script type="application/x-javascript" src="chrome://itest2recorder/content/WTR_base.js" />
-	<script type="application/x-javascript" src="chrome://itest2recorder/content/preferences.js" />
-	<script type="application/x-javascript" src="chrome://itest2recorder/content/overlay.js" />
-	<script type="application/x-javascript" src="chrome://itest2recorder/content/webtest-steps.js" />
+<overlay id="testwise_recorder-overlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<script type="application/x-javascript" src="chrome://testwise_recorder/content/WTRStep.js" />
+	<script type="application/x-javascript" src="chrome://testwise_recorder/content/myThis.js" />
+	<script type="application/x-javascript" src="chrome://testwise_recorder/content/log.js" />
+	<script type="application/x-javascript" src="chrome://testwise_recorder/content/WTR_base.js" />
+	<script type="application/x-javascript" src="chrome://testwise_recorder/content/preferences.js" />
+	<script type="application/x-javascript" src="chrome://testwise_recorder/content/overlay.js" />
+	<script type="application/x-javascript" src="chrome://testwise_recorder/content/webtest-steps.js" />
 
 	<commandset id="mainCommandSet">
-		<command id="itest2_cmd_ShowSidebar" oncommand="WTR_Overlay.ShowSidebar()"/>
+		<command id="testwise_cmd_ShowSidebar" oncommand="WTR_Overlay.ShowSidebar()"/>
 	</commandset>
 
 	<broadcasterset id="mainBroadcasterSet">
-		<broadcaster label="&itest2recorder.label;" group="sidebar" id="webtestRecorderSidebar"
-			sidebarurl="chrome://itest2recorder/content/itest2recorder.xul" sidebartitle="iTest2 Recorder"/>
+		<broadcaster label="&testwise_recorder.label;" group="sidebar" id="webtestRecorderSidebar"
+			sidebarurl="chrome://testwise_recorder/content/testwise_recorder.xul" sidebartitle="TestWise Recorder"/>
 	</broadcasterset>
 
 	<keyset id="mainKeyset">
-		<key id="itest2_key_ShowSidebar" key="R" command="itest2_cmd_ShowSidebar" modifiers="alt,shift"/>
+		<key id="testwise_key_ShowSidebar" key="R" command="testwise_cmd_ShowSidebar" modifiers="alt,shift"/>
 	</keyset>
 
 	<menupopup id="menu_ToolsPopup">
-		<menuitem label="iTest2 Recorder Sidebar" command="itest2_cmd_ShowSidebar" key="itest2_key_ShowSidebar"
+		<menuitem label="TestWise Recorder Sidebar" command="testwise_cmd_ShowSidebar" key="testwise_key_ShowSidebar"
 			id="wtr_ToolMenuItem" type="checkbox"/>
 	</menupopup>
 
 	<popup id="contentAreaContextMenu">
-		<menuitem id="wtr_cmdVerifyText" label="&itest2recorder.contextmenu.verifyText;" position="1" oncommand="WTR_Overlay.addVerifyText(event)"
+		<menuitem id="wtr_cmdVerifyText" label="&testwise_recorder.contextmenu.verifyText;" position="1" oncommand="WTR_Overlay.addVerifyText(event)"
 			hidden="true" />
 		<menuitem id="wtr_cmdVerifyTitle" label="Add verifyTitle for this page: " position="2" oncommand="WTR_Overlay.addVerifyTitle(event)"
 			hidden="true" />
