@@ -1,3 +1,6 @@
+1.2.1
+ - support Firefox 3.6 
+
 1.2 
  - renamed 'TestWise Recorder'
 
