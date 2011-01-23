@@ -15,7 +15,7 @@
  @param _oStep the step to represent
  @return the DOM node to insert in the document
  */
-function createDOMNode_iTest2Representation(_oStep, _document, bVisible)
+function createDOMNode_RwebSpecRepresentation(_oStep, _document, bVisible)
 {
   var oStepNode = _document.createElement("div");
   if (!bVisible)
@@ -43,7 +43,7 @@ function createDOMNode_iTest2Representation(_oStep, _document, bVisible)
 }
 
 // this registers the editor as listener too
-setCreateDOMNode_XXXRepresentation(createDOMNode_iTest2Representation)
+setCreateDOMNode_XXXRepresentation(createDOMNode_RwebSpecRepresentation)
 
 var conversions = {}
 conversions["invoke"] = function(oStep)

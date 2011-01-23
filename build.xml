@@ -56,7 +56,7 @@
   <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
   <target name="test" depends="compile" description="runs the unit tests">
 	<copy todir="target/classes/content">
-      <fileset dir="test" includes="**/*.js"/>
+      <fileset dir="test/unit" includes="**/*.js"/>
 	</copy>
     <java dir="target/classes/content" classname="org.mozilla.javascript.tools.shell.Main" failonerror="true"
           logError="true"
