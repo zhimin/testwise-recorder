@@ -7,6 +7,7 @@
  *
  * Contributors:
  *    Marc Guillemot - initial version
+ *    Zhimin Zhan
  *******************************************************************************/
 
 // webtest specials
@@ -408,17 +409,7 @@ wtr_Misc._handleFieldChange = function(_oField)
   }
 }
 
-wtr_Misc.testRun = function(_str)
-{
-  try
-  {
-    eval(_str);
-  }
-  catch(e)
-  {
-    this.log.logError(e);
-  }
-}
+// NOTE: Delete testRunTODO Delete it
 
 // register wtr_Misc as property on all its function to allow them to retrieve it when detached
 wtr_myThis.registerAsMyThis(wtr_Misc);

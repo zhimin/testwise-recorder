@@ -1,5 +1,5 @@
 
-const ApplicationName = "iTestRecorder";
+const ApplicationName = "TestWiseRecorder";
 
 function Log(category)
 {

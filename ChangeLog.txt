@@ -1,3 +1,7 @@
+1.2.2
+ - Meet the feedbacks from initial review
+ - 
+
 1.2.1
  - support Firefox 3.6 
 

@@ -37,17 +37,18 @@ onload="WTR_Sidebar.onLoad(event)" onunload="WTR_Sidebar.onUnload(event)">
 	<vbox flex="5">
 		<tabbox flex="5">
 			<tabs align="left">
-				<tab label="  RWebSpec  " selected="true"/>
-				<tab label="  Watir  "/>
+				<tab label=" RWebSpec " selected="true"/>
+				<tab label=" Watir "/>
 				
 			</tabs>
 			<tabpanels flex="1">
-				<tabpanel id="tabPrettyXML" orient="vertical" class="editorTabPanel" context="editorContextMenu">
-					<iframe id="edSource" src="chrome://testwise_recorder/content/editors/rwebspec.html" style="border: 1px solid #000000; margin-top: 2px;margin-left: 1px;" flex="1"/>
+				<tabpanel id="tabSourceRWebSpec" orient="vertical" class="editorTabPanel" context="editorContextMenu">
+					<!-- iframe to load from internal html chrome://, safe -->
+					<iframe id="edSource" type="chrome"  src="chrome://testwise_recorder/content/editors/rwebspec.html" style="border: 1px solid #000000; margin-top: 2px;margin-left: 1px;" flex="1"/>
 					<label class="editor_bottom">Right mouse click to copy the steps above, and paste into <a href="http://www.testwisely.com">TestWise IDE</a> to run.</label>
 				</tabpanel>
 				<tabpanel id="tabSourceWatir" orient="vertical" context="editorContextMenu">
-					<iframe id="edSourceWatir" src="chrome://testwise_recorder/content/editors/watir.html" style="border: 1px solid #000000; margin-top: 2px;margin-left: 1px;"  flex="1"/>
+					<iframe id="edSourceWatir" type="chrome"  src="chrome://testwise_recorder/content/editors/watir.html" style="border: 1px solid #000000; margin-top: 2px;margin-left: 1px;"  flex="1"/>
 					<label class="editor_bottom">Right mouse click to copy the steps above, append <span class="code">require 'watir'</span> in front.</label>
 				</tabpanel>		
 			</tabpanels>

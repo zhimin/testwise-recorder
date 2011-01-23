@@ -30,7 +30,7 @@
       <format property="today" pattern="yyyyMMdd"/>
     </tstamp>
     <!-- <buildnumber/> -->
-    <property name="versionNumber" value="1.2.1"/>
+    <property name="versionNumber" value="1.2.2"/>
     <echo message="Extension version: ${versionNumber}"/>
     <mkdir dir="${targetDir}"/>
     <mkdir dir="${targetDir}/chrome"/>
@@ -55,6 +55,9 @@
 
   <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
   <target name="test" depends="compile" description="runs the unit tests">
+	<copy todir="target/classes/content">
+      <fileset dir="test" includes="**/*.js"/>
+	</copy>
     <java dir="target/classes/content" classname="org.mozilla.javascript.tools.shell.Main" failonerror="true"
           logError="true"
           classpath="${rhinoJar}" fork="true">
