@@ -16,7 +16,7 @@ var wtr_Misc = new WTR_base();
 wtr_Misc.myThis = wtr_Misc;
 
 wtr_Misc.log = new Log("rwebspec-steps");
-var itest_recorded_enabled = true;
+var testwise_recorder_enabled = true;
 
 
 /**
@@ -66,14 +66,14 @@ wtr_Misc.toggleRecordingEnabled = function(_bEnabled)
         wtr_Misc.initialize(currentWindow.document);
       else
         ; // nothing, it already works, as long as we don't
-      itest_recorded_enabled = true;
+      testwise_recorder_enabled = true;
       document.getElementById("status_label").hidden = false;
     }
     else
     {
       // TODO: stop record
       // remove listeners or flag as not recording
-      itest_recorded_enabled = false;
+      testwise_recorder_enabled = false;
       document.getElementById("status_label").hidden = true;
     }
   }
@@ -255,7 +255,7 @@ wtr_Misc.HandlerClick = function(_oEvent)
 wtr_Misc._handleLinkClick = function(_oLink)
 {
   var myThis = arguments.callee.myThis;
-  if (itest_recorded_enabled) {
+  if (testwise_recorder_enabled) {
     myThis.log.info("Handling event as a click link");
     var oStepVariations = []
     if (_oLink.id)
@@ -280,7 +280,7 @@ wtr_Misc._handleLinkClick = function(_oLink)
 wtr_Misc.handlerChange = function(_event)
 {
   var myThis = arguments.callee.myThis;
-  if (itest_recorded_enabled) {
+  if (testwise_recorder_enabled) {
     var oField = _event.target;
     myThis._handleFieldChange(oField);
   }
