@@ -120,12 +120,12 @@ conversions["setFileField"] = function(oStep)
 
 conversions["setRadioButton"] = function(oStep)
 {
-  if (oStep.htmlId)
+  if (oStep.htmlId) {
     by = 'browser.find_element(:id, "' + oStep.htmlId + '").click'
-  else if (oStep.name)
-    by =  "browser.find_elements(:name => \"" + "tripType" + ").each { |elem|;" + 
-    "elem.click && break if elem.attribute(\"value\") == \"" + oStep.value + "\" && elem.attribute(\"type\") == \"radio\";" +  
-    "}"
+  } else if (oStep.name) {
+    by =  "browser.find_elements(:name => \"" + "tripType" + ").each { |elem| " + 
+    "elem.click && break if elem.attribute(\"value\") == \"" + oStep.value + "\" && elem.attribute(\"type\") == \"radio\"  }"
+  }
   return by
 }
 
@@ -140,7 +140,7 @@ conversions["setCheckbox"] = function(oStep)
 
 conversions["setSelectField"] = function(oStep)
 {
-  return 'select_elem = browser.' + identifyInputField(oStep) + '; ' + 
+  return 'select_elem = browser.' + identifyInputField(oStep) + ';' + 
    "options = select_elem.find_elements(:tag_name, \"option\"); " + 
    "options.each { |opt| opt.click if opt.text == \"" + oStep.text + "\"}"
 }
