@@ -37,7 +37,7 @@ setCreateDOMNode_XXXRepresentation(createDOMNode_SeleniumWebdriverRepresentation
 var conversions = {}
 conversions["invoke"] = function(oStep)
 {
-  return 'browser = Selenium::WebDriver.for :firefox # or :ie or :chrome\nbrowser.navigate.to "' + oStep.url + '"' 
+  return 'browser = Selenium::WebDriver.for :firefox # or :ie or :chrome; browser.navigate.to "' + oStep.url + '"' 
 }
 
 conversions["verifyTitle"] = function(oStep)
@@ -72,7 +72,7 @@ conversions["clickButton"] = function(oStep)
   else if (oStep.name)
     by = 'browser.find_element(:name, "' + oStep.name + '").click'
   else if (oStep.label)
-    by = 'browser.button(:value,"' + oStep.label + '").click'
+    by = 'browser.find_element(:xpath,"' + "//input[@value=\"" + oStep.label + "\"]\").click"
   else if (oStep.src) 
     by = 'browser.button(:src,"' + oStep.src+ '").click'
   return by;
@@ -123,8 +123,8 @@ conversions["setRadioButton"] = function(oStep)
   if (oStep.htmlId)
     by = 'browser.find_element(:id, "' + oStep.htmlId + '").click'
   else if (oStep.name)
-    by =  "browser.find_elements(:name => \"" + "tripType" + ").each { |elem|\n" + 
-    "elem.click && break if elem.attribute(\"value\") == \"" + oStep.value + "\" && elem.attribute(\"type\") == \"radio\"\n" +  
+    by =  "browser.find_elements(:name => \"" + "tripType" + ").each { |elem|;" + 
+    "elem.click && break if elem.attribute(\"value\") == \"" + oStep.value + "\" && elem.attribute(\"type\") == \"radio\";" +  
     "}"
   return by
 }
@@ -140,8 +140,8 @@ conversions["setCheckbox"] = function(oStep)
 
 conversions["setSelectField"] = function(oStep)
 {
-  return 'select_elem = browser.' + identifyInputField(oStep) + '\n' + 
-   "options = select_elem.find_elements(:tag_name, \"option\")\n" + 
+  return 'select_elem = browser.' + identifyInputField(oStep) + '; ' + 
+   "options = select_elem.find_elements(:tag_name, \"option\"); " + 
    "options.each { |opt| opt.click if opt.text == \"" + oStep.text + "\"}"
 }
 

@@ -39,7 +39,7 @@ onload="WTR_Sidebar.onLoad(event)" onunload="WTR_Sidebar.onUnload(event)">
 			<tabs align="left">
 				<tab label=" RWebSpec " selected="true"/>
 				<tab label=" Watir "/>
-				
+				<tab label=" Selenium-WebDriver "/>				
 			</tabs>
 			<tabpanels flex="1">
 				<tabpanel id="tabSourceRWebSpec" orient="vertical" class="editorTabPanel" context="editorContextMenu">
