@@ -51,6 +51,10 @@ onload="WTR_Sidebar.onLoad(event)" onunload="WTR_Sidebar.onUnload(event)">
 					<iframe id="edSourceWatir" type="chrome"  src="chrome://testwise_recorder/content/editors/watir.html" style="border: 1px solid #000000; margin-top: 2px;margin-left: 1px;"  flex="1"/>
 					<label class="editor_bottom">Right mouse click to copy the steps above, append <span class="code">require 'watir'</span> in front.</label>
 				</tabpanel>		
+				<tabpanel id="tabSourceSeleniumWebdriver" orient="vertical" context="editorContextMenu">
+					<iframe id="edSourceSeleniumWebdriver" type="chrome"  src="chrome://testwise_recorder/content/editors/selenium_webdriver.html" style="border: 1px solid #000000; margin-top: 2px;margin-left: 1px;"  flex="1"/>
+					<label class="editor_bottom">Right mouse click to copy the steps above, append <span class="code">require 'selenium-webdriver'</span> in front.</label>
+				</tabpanel>		
 			</tabpanels>
 		</tabbox>
 
