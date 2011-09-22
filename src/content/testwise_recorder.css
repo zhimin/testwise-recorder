@@ -47,3 +47,7 @@ toolbarbutton.icon[disabled="true"] {
   list-style-image: url("recording.png");
 /*  -moz-image-region: rect(16px 48px 32px 32px);*/
 }
+
+span.symbol {
+  color: red;
+}

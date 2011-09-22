@@ -22,6 +22,7 @@ function createDOMNode_WatirRepresentation(_oStep, _document, bVisible)
       WTR_DomUtils.appendNodeToNode(oStepNode, "span", {"class": "junit"}, "assertEquals");
     }
     var oNode = WTR_DomUtils.appendNodeToNode(oStepNode, "span", {}, "");
+    txt = txt.replace(/(:\w+)\s*,/, '<span class=\'symbol\'>$1</span>,');
     txt = txt.replace(/"([^\"]*)"/g, '"<span class="text">$1</span>"')
     oNode.innerHTML = txt
   }

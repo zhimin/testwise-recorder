@@ -16,14 +16,11 @@ function createDOMNode_SeleniumWebdriverRepresentation(_oStep, _document, bVisib
   if (conversion)
   {
     var txt = conversion(_oStep);
-    if (txt.indexOf("assertEquals") == 0)
-    {
-      txt = txt.substr("assertEquals".length)
-      WTR_DomUtils.appendNodeToNode(oStepNode, "span", {"class": "junit"}, "assertEquals");
-    }
     var oNode = WTR_DomUtils.appendNodeToNode(oStepNode, "span", {}, "");
+    txt = txt.replace(/(:\w+)\s*,/, '<span class=\'symbol\'>$1</span>,');
+    txt = txt.replace(/(:firefox)\s/, '<span class=\'symbol\'>$1</span> ');
     txt = txt.replace(/"([^\"]*)"/g, '"<span class="text">$1</span>"')
-    oNode.innerHTML = txt
+    oNode.innerHTML = txt	
   }
   else
     WTR_DomUtils.appendNodeToNode(oStepNode, "span", {"class": "comment"}, "# can't yet handle " + _oStep.wtrStep);
@@ -37,7 +34,12 @@ setCreateDOMNode_XXXRepresentation(createDOMNode_SeleniumWebdriverRepresentation
 var conversions = {}
 conversions["invoke"] = function(oStep)
 {
-  return 'browser = Selenium::WebDriver.for :firefox # or :ie or :chrome; browser.navigate.to "' + oStep.url + '"' 
+  return 'browser = Selenium::WebDriver.for :firefox # or :ie or :chrome;' 
+}
+
+conversions["navigate"] = function(oStep)
+{
+  return 'browser.navigate.to "' + oStep.url + '"' 
 }
 
 conversions["verifyTitle"] = function(oStep)
@@ -72,7 +74,7 @@ conversions["clickButton"] = function(oStep)
   else if (oStep.name)
     by = 'browser.find_element(:name, "' + oStep.name + '").click'
   else if (oStep.label)
-    by = 'browser.find_element(:xpath,"' + "//input[@value=\"" + oStep.label + "\"]\").click"
+    by = 'browser.find_element(:xpath,"' + "//input[@value='" + oStep.label + "']\").click"
   else if (oStep.src) 
     by = 'browser.button(:src,"' + oStep.src+ '").click'
   return by;

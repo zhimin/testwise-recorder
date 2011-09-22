@@ -1,3 +1,9 @@
+1.4.4 (2011-09)
+ - colour highlighting attributes :id
+ - updated the colour styles
+ - (selenium) fixed escaping button value in xpath
+ - (selenium) show selenium open browser statements (2 lines) OK
+
 1.3.2 (2011-08-17)
  - support Firefox 6
 

@@ -19,8 +19,9 @@ var createDOMNode_XXXRepresentation; // needs to be set by extension
 var nbNodes = 0;
 
 function addWebTestStep(_possibleSteps)
-{
+{	
 	var oStepVariationsContainer = document.createElement("div");
+	document.body.appendChild(oStepVariationsContainer);
 	oStepVariationsContainer.setAttribute("wt-type", "container")
 	if (_possibleSteps.push) // an array
 	{
@@ -32,7 +33,6 @@ function addWebTestStep(_possibleSteps)
 	else
 		addSingleStep(oStepVariationsContainer, _possibleSteps, true)
 
-	document.body.appendChild(oStepVariationsContainer);
 }
 
 function setCreateDOMNode_XXXRepresentation(_fn)
@@ -89,8 +89,23 @@ function addSingleStep(_oContainer, _oStep, bVisible)
 	oNode.setAttribute("wt-type", "step")
 	oNode.id = "step" + (++nbNodes)
 	_oContainer.appendChild(oNode);
+	
 	if (bVisible)
 		_oContainer.visibleStepNode = oNode
+		
+	// special case append another nocde
+	if (oNode.textContent.indexOf("browser = Selenium::WebDriver.for") == 0) {		
+		var anotherContainer = document.createElement("div");		
+		_oStep.wtrStep = "navigate"
+		var anotherNode = createDOMNode_XXXRepresentation(_oStep, document, bVisible);		
+		anotherNode.setAttribute("wt-type", "step")
+		anotherNode.id = "step" + (++nbNodes)		
+		anotherContainer.appendChild(anotherNode);	
+		if (bVisible)
+			anotherContainer.visibleStepNode = anotherNode	
+		document.body.appendChild(anotherContainer);			
+	}
+	
 }
 
 function getContainer(_oNode)
