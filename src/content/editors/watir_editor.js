@@ -122,7 +122,7 @@ conversions["setRadioButton"] = function(oStep)
   if (oStep.htmlId)
     by = 'browser.radio(:id, "' + oStep.htmlId + '").set'
   else if (oStep.name)
-    by = 'browser.radio(:name, "' + oStep.name + '", "' + oStep.value + '").click'
+    by = 'browser.radio(:name => "' + oStep.name + '", :value => "' + oStep.value + '").click'
   return by
 }
 
