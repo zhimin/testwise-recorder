@@ -49,7 +49,7 @@ setCreateDOMNode_XXXRepresentation(createDOMNode_RwebSpecRepresentation)
 var conversions = {}
 conversions["invoke"] = function(oStep)
 {
-  return 'goto_page("' + oStep.url + '")'
+  return 'goto_url("' + oStep.url + '")'
 }
 
 conversions["verifyTitle"] = function(oStep)
