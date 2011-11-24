@@ -125,8 +125,8 @@ conversions["setRadioButton"] = function(oStep)
   if (oStep.htmlId) {
     by = 'browser.find_element(:id, "' + oStep.htmlId + '").click'
   } else if (oStep.name) {
-    by =  "browser.find_elements(:name => \"" + "tripType" + ").each { |elem| " + 
-    "elem.click && break if elem.attribute(\"value\") == \"" + oStep.value + "\" && elem.attribute(\"type\") == \"radio\"  }"
+    by =  "browser.find_elements(:name => \"" + oStep.name + "\").each { |elem| " + 
+    "elem.click && break if elem.attribute(\"value\") == \"" + oStep.value + "\" && elem.attribute(\"type\") == \"radio\" }"
   }
   return by
 }
