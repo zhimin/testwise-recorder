@@ -1,3 +1,6 @@
+1.4.6 (2011-12-30)
+ - support Firefox up to version 10
+
 1.4.5 (2011-11-24)
  - fixed goto_page on enabling the recorder, change to goto_url
  - fixed recording selenium radio button
