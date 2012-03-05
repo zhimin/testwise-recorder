@@ -50,7 +50,7 @@ conversions["verifyTitle"] = function(oStep)
 
 conversions["verifyText"] = function(oStep)
 {
-  return 'browser.text.include?("' + oStep.text + '").should == true'
+  return 'browser.find_element(:tag_name, "body").text.include?("' + oStep.text + '").should == true'
 }
 
 conversions["clickLink"] = function(oStep)
