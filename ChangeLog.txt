@@ -1,7 +1,10 @@
+1.4.8 (2012-05-12)
+ - support watir 3
+
 1.4.7
  - fixed assert text in Selenium-WebDriver
 
-1.4.7 (2011-12-30)
+1.4.6 (2011-12-30)
  - support Firefox up to version 10
 
 1.4.5 (2011-11-24)

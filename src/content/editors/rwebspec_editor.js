@@ -140,7 +140,7 @@ conversions["setSelectField"] = function(oStep)
   if (oStep.name) {
     return 'select_option("' + oStep.name + '", "' + oStep.text + '")'
   } else if (oStep.htmlId) {
-    return 'select_list' + '(:id, "' + oStep.htmlId + '").set("' + oStep.text + '")'
+    return 'select_list' + '(:id, "' + oStep.htmlId + '").select("' + oStep.text + '")'
   } else {
     return 'select_option("specify_name_here", "' + oStep.text + '")'
   }

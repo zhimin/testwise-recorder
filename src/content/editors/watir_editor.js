@@ -137,7 +137,7 @@ conversions["setCheckbox"] = function(oStep)
 
 conversions["setSelectField"] = function(oStep)
 {
-  return 'browser.select_list' + identifyInputField(oStep) + '.set("' + oStep.text + '")'
+  return 'browser.select_list' + identifyInputField(oStep) + '.select("' + oStep.text + '")'
 }
 
 

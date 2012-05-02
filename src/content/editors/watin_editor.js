@@ -137,7 +137,7 @@ conversions["setCheckbox"] = function(oStep)
 
 conversions["setSelectField"] = function(oStep)
 {
-  return 'ie.select_list' + identifyInputField(oStep) + '.set("' + oStep.text + '")'
+  return 'ie.select_list' + identifyInputField(oStep) + '.select("' + oStep.text + '")'
 }
 
 
