@@ -142,14 +142,15 @@ conversions["setCheckbox"] = function(oStep)
 
 conversions["setSelectField"] = function(oStep)
 {
-  return 'select_elem = browser.' + identifyInputField(oStep) + ';' + 
-   "options = select_elem.find_elements(:tag_name, \"option\"); " + 
-   "options.each { |opt| opt.click if opt.text == \"" + oStep.text + "\"}"
+  // return 'select_elem = browser.' + identifyInputField(oStep) + ';' + 
+  //  "options = select_elem.find_elements(:tag_name, \"option\"); " + 
+  //  "options.each { |opt| opt.click if opt.text == \"" + oStep.text + "\"}"
+  return "Selenium::WebDriver::Support::Select.new(browser." + identifyInputField(oStep) + ").select_by(:text, \"" + oStep.text + "\")"
 }
 
 conversions["verifyInputField"] = function(oStep)
 {
-  var tagName = "browser.text_field";
+  var tagName = "browser.find_element";
   if (oStep.tagName == "TEXTAREA") {
     tagName = "browser.area";
   }
