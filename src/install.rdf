@@ -7,7 +7,7 @@
 
     <em:name>TestWise Recorder</em:name>
     <em:id>@extension.id@</em:id>
-    <em:version>1.4.8</em:version>
+    <em:version>1.4.9</em:version>
     <em:type>2</em:type>
     <em:description>Recording tool to help creating automated test scripts (RWebSpec and Watir) for web applications
     </em:description>
