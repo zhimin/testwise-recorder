@@ -214,7 +214,7 @@ WTR_Overlay.addVerifySelectField = function(_oEvent)
 	try
 	{
 		var focusedElement = document.popupNode;
-		var childSelectElement = focusedElement.childNodes[1];
+		var childSelectElement = focusedElement;
 		var oStep = new WTRStep("verifySelectField", {
 			name: childSelectElement.name,
 			value: childSelectElement.value,

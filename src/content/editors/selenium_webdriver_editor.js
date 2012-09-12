@@ -100,11 +100,6 @@ function identifyInputField(oStep)
 
 conversions["setInputField"] = function(oStep)
 {
-  var tagName = "text_field";
-  if (oStep.tagName == "TEXTAREA") {
-    tagName = "area";
-  }
-
   return 'browser.' + identifyInputField(oStep) + '.send_keys("' + oStep.value + '")'
 }
 
@@ -136,7 +131,7 @@ conversions["setCheckbox"] = function(oStep)
   if (oStep.checked == "true") {
     return 'browser.' + identifyInputField(oStep) + '.click'
   } else {
-    return 'browser.' + identifyInputField(oStep) + '.clear'
+    return 'browser.' + identifyInputField(oStep) + '.click if browser.' + identifyInputField(oStep) + ".selected?"
   }
 }
 
@@ -151,21 +146,16 @@ conversions["setSelectField"] = function(oStep)
 conversions["verifyInputField"] = function(oStep)
 {
   var tagName = "browser.find_element";
-  if (oStep.tagName == "TEXTAREA") {
-    tagName = "browser.area";
-  }
-
   if (oStep.htmlId) {
-    return tagName + '(:id, "' + oStep.htmlId + '").value.should == "' + oStep.value + '"'
+    return tagName + '(:id, "' + oStep.htmlId + '").attribute("value").should == "' + oStep.value + '"'
   } else if (oStep.name) {
-    return tagName + '(:name, "' + oStep.name + '").value.should == "' + oStep.value + '"'
+    return tagName + '(:name, "' + oStep.name + '").attribute("value").should == "' + oStep.value + '"'
   } else {
-    return tagName + '(:id, "specify_id_here").value.should == "' + oStep.value + '"'
+    return tagName + '(:id, "specify_id_here").attribute("value").should == "' + oStep.value + '"'
   }
 }
 
 conversions["verifySelectField"] = function(oStep)
 {
-  var tagName = "select_list";
-  return tagName + '(:id, "' + oStep.htmlId + '").value.should == "' + oStep.value + '"';
+  return 'Selenium::WebDriver::Support::Select.new(browser.find_element(:id, "' + oStep.htmlId + '")).first_selected_option.text.should == "' + oStep.value + '"';
 }
