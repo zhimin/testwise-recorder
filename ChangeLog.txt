@@ -1,3 +1,6 @@
+1.5.1
+ - support input[@type = email]
+
 1.5 (2012-09-15)
  - {selenium} fixed clear checkbox for 
  - fixed checkpoint for select/dropdown value

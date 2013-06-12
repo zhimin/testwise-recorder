@@ -353,6 +353,11 @@ wtr_Misc._handleFieldChange = function(_oField)
       oBaseStep.value = oField.value;
       oBaseStep.description = "Set password field " + oField.name + ": " + oField.value;
       break;
+    case "email":
+      oBaseStep = new WTRStep("setInputField", {htmlId: oField.id, tagName: oField.tagName});
+      oBaseStep.value = oField.value;
+      oBaseStep.description = "Set email field " + oField.name + ": " + oField.value;
+      break;
     case "radio":
       oBaseStep = new WTRStep("setRadioButton", {htmlId: oField.id, tagName: oField.tagName});
       oBaseStep.value = oField.value;
