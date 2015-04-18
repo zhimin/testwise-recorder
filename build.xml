@@ -30,7 +30,7 @@
       <format property="today" pattern="yyyyMMdd"/>
     </tstamp>
     <!-- <buildnumber/> -->
-    <property name="versionNumber" value="1.5.1"/> <!-- also change install.rdf -->
+    <property name="versionNumber" value="1.6"/> <!-- also change install.rdf -->
     <echo message="Extension version: ${versionNumber}"/>
     <mkdir dir="${targetDir}"/>
     <mkdir dir="${targetDir}/chrome"/>

@@ -44,12 +44,12 @@ conversions["invoke"] = function(oStep)
 conversions["verifyTitle"] = function(oStep)
 {
   // TODO if firefox, browser.title
-  return 'browser.document.title.should == "' + oStep.text + '"'
+  return 'expect(browser.document.title).to eq("' + oStep.text + '")'
 }
 
 conversions["verifyText"] = function(oStep)
 {
-  return 'browser.text.include?("' + oStep.text + '").should == true'
+  return 'expect(browser.text)to include("' + oStep.text + '")'
 }
 
 conversions["clickLink"] = function(oStep)
@@ -143,22 +143,22 @@ conversions["setSelectField"] = function(oStep)
 
 conversions["verifyInputField"] = function(oStep)
 {
-  var tagName = "browser.text_field";
+  var tagName = "expect(browser.text_field";
   if (oStep.tagName == "TEXTAREA") {
-    tagName = "browser.area";
+    tagName = "expect(browser.area";
   }
 
   if (oStep.htmlId) {
-    return tagName + '(:id, "' + oStep.htmlId + '").value.should == "' + oStep.value + '"'
+    return tagName + '(:id, "' + oStep.htmlId + '").value).to eq("' + oStep.value + '")'
   } else if (oStep.name) {
-    return tagName + '(:name, "' + oStep.name + '").value.should == "' + oStep.value + '"'
+    return tagName + '(:name, "' + oStep.name + '").value).to eq("' + oStep.value + '")'
   } else {
-    return tagName + '(:id, "specify_id_here").value.should == "' + oStep.value + '"'
+    return tagName + '(:id, "specify_id_here").value.to eq("' + oStep.value + '")'
   }
 }
 
 conversions["verifySelectField"] = function(oStep)
 {
-  var tagName = "select_list";
-  return tagName + '(:id, "' + oStep.htmlId + '").value.should == "' + oStep.value + '"';
+  var tagName = "expect(browser.select_list";
+  return tagName + '(:id, "' + oStep.htmlId + '").value).to eq("' + oStep.value + '")';
 }

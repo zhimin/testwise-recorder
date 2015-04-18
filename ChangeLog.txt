@@ -1,3 +1,8 @@
+1.6 (2015-04-17)
+- {selenium} change default variable 'browser' to 'driver'
+- {selenium} optimize statement for clicking a radio button
+- change to RSpec 3 expectation syntax, should xxx to expect().to 
+
 1.5.1
  - support input[@type = email]
 

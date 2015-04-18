@@ -34,34 +34,33 @@ setCreateDOMNode_XXXRepresentation(createDOMNode_SeleniumWebdriverRepresentation
 var conversions = {}
 conversions["invoke"] = function(oStep)
 {
-  return 'browser = Selenium::WebDriver.for :firefox # or :ie or :chrome;' 
+  return 'driver = Selenium::WebDriver.for :firefox # or :ie or :chrome;' 
 }
 
 conversions["navigate"] = function(oStep)
 {
-  return 'browser.navigate.to "' + oStep.url + '"' 
+  return 'driver.navigate.to "' + oStep.url + '"' 
 }
 
 conversions["verifyTitle"] = function(oStep)
 {
-  // TODO if firefox, browser.title
-  return 'browser.title.should == "' + oStep.text + '"'
+  return 'expect(driver.title).to eq("' + oStep.text + '")'
 }
 
 conversions["verifyText"] = function(oStep)
 {
-  return 'browser.find_element(:tag_name, "body").text.include?("' + oStep.text + '").should == true'
+  return 'expect(driver.find_element(:tag_name, "body").text).to include("' + oStep.text + '")'
 }
 
 conversions["clickLink"] = function(oStep)
 {
   var by = ""
   if (oStep.htmlId)
-    by = 'browser.find_element(:id, "' + oStep.htmlId + '").click'
+    by = 'driver.find_element(:id, "' + oStep.htmlId + '").click'
   else if (oStep.name)
     by = 'brower.find_element(:name, "' + oStep.name + '").click'
   else if (oStep.label)
-    by = 'browser.find_element(:link_text, "' + oStep.label + '").click'
+    by = 'driver.find_element(:link_text, "' + oStep.label + '").click'
   return by;
 }
 
@@ -70,13 +69,13 @@ conversions["clickButton"] = function(oStep)
   //TODO: image button => ie.button(:src, /doit/).click
   var by = ""
   if (oStep.htmlId)
-    by = 'browser.find_element(:id, "' + oStep.htmlId + '").click'
+    by = 'driver.find_element(:id, "' + oStep.htmlId + '").click'
   else if (oStep.name)
-    by = 'browser.find_element(:name, "' + oStep.name + '").click'
+    by = 'driver.find_element(:name, "' + oStep.name + '").click'
   else if (oStep.label)
-    by = 'browser.find_element(:xpath,"' + "//input[@value='" + oStep.label + "']\").click"
+    by = 'driver.find_element(:xpath,"' + "//input[@value='" + oStep.label + "']\").click"
   else if (oStep.src) 
-    by = 'browser.button(:src,"' + oStep.src+ '").click'
+    by = 'driver.button(:src,"' + oStep.src+ '").click'
   return by;
 }
 
@@ -100,16 +99,16 @@ function identifyInputField(oStep)
 
 conversions["setInputField"] = function(oStep)
 {
-  return 'browser.' + identifyInputField(oStep) + '.send_keys("' + oStep.value + '")'
+  return 'driver.' + identifyInputField(oStep) + '.send_keys("' + oStep.value + '")'
 }
 
 conversions["setFileField"] = function(oStep)
 {
   oStep.value = oStep.fileName
   if (oStep.name) {
-    return 'browser.find_element(:name, "' + oStep.fileName + '").send_keys("' + oStep.fileName + '")'
+    return 'driver.find_element(:name, "' + oStep.fileName + '").send_keys("' + oStep.fileName + '")'
   } else if (oStep.htmlId) {
-    return 'browser.find_element(:id, "' +  oStep.htmlId + '").send_keys("' + oStep.fileName + '")'
+    return 'driver.find_element(:id, "' +  oStep.htmlId + '").send_keys("' + oStep.fileName + '")'
   } else {
     return conversions["setInputField"](oStep)
   }
@@ -118,10 +117,9 @@ conversions["setFileField"] = function(oStep)
 conversions["setRadioButton"] = function(oStep)
 {
   if (oStep.htmlId) {
-    by = 'browser.find_element(:id, "' + oStep.htmlId + '").click'
+    by = 'driver.find_element(:id, "' + oStep.htmlId + '").click'
   } else if (oStep.name) {
-    by =  "browser.find_elements(:name => \"" + oStep.name + "\").each { |elem| " + 
-    "elem.click && break if elem.attribute(\"value\") == \"" + oStep.value + "\" && elem.attribute(\"type\") == \"radio\" }"
+    by =  "driver.find_element(:xpath, \"//input[@type='radio' and @name='" +  oStep.name + "' and @value='" + oStep.value + "']\").click"
   }
   return by
 }
@@ -129,9 +127,9 @@ conversions["setRadioButton"] = function(oStep)
 conversions["setCheckbox"] = function(oStep)
 {
   if (oStep.checked == "true") {
-    return 'browser.' + identifyInputField(oStep) + '.click'
+    return 'driver.' + identifyInputField(oStep) + '.click'
   } else {
-    return 'browser.' + identifyInputField(oStep) + '.click if browser.' + identifyInputField(oStep) + ".selected?"
+    return 'driver.' + identifyInputField(oStep) + '.click if driver.' + identifyInputField(oStep) + ".selected?"
   }
 }
 
@@ -140,22 +138,29 @@ conversions["setSelectField"] = function(oStep)
   // return 'select_elem = browser.' + identifyInputField(oStep) + ';' + 
   //  "options = select_elem.find_elements(:tag_name, \"option\"); " + 
   //  "options.each { |opt| opt.click if opt.text == \"" + oStep.text + "\"}"
-  return "Selenium::WebDriver::Support::Select.new(browser." + identifyInputField(oStep) + ").select_by(:text, \"" + oStep.text + "\")"
+  return "Selenium::WebDriver::Support::Select.new(driver." + identifyInputField(oStep) + ").select_by(:text, \"" + oStep.text + "\")"
 }
 
 conversions["verifyInputField"] = function(oStep)
 {
-  var tagName = "browser.find_element";
+  var tagName = "expect(driver.find_element";
   if (oStep.htmlId) {
-    return tagName + '(:id, "' + oStep.htmlId + '").attribute("value").should == "' + oStep.value + '"'
+    return tagName + '(:id, "' + oStep.htmlId + '").attribute("value")).to eq("' + oStep.value + '")'
   } else if (oStep.name) {
-    return tagName + '(:name, "' + oStep.name + '").attribute("value").should == "' + oStep.value + '"'
+    return tagName + '(:name, "' + oStep.name + '").attribute("value")).to eq("' + oStep.value + '")'
   } else {
-    return tagName + '(:id, "specify_id_here").attribute("value").should == "' + oStep.value + '"'
+    return tagName + '(:id, "specify_id_here").attribute("value")).to eq("' + oStep.value + '")'
   }
 }
 
 conversions["verifySelectField"] = function(oStep)
 {
-  return 'Selenium::WebDriver::Support::Select.new(browser.find_element(:id, "' + oStep.htmlId + '")).first_selected_option.text.should == "' + oStep.value + '"';
+  if (oStep.htmlId) {
+  	return 'expect(Selenium::WebDriver::Support::Select.new(driver.find_element(:id, "' + oStep.htmlId + '")).first_selected_option.text).to eq("' + oStep.value + '")';
+  } else if (oStep.name) {
+  	return 'expect(Selenium::WebDriver::Support::Select.new(driver.find_element(:name, "' + oStep.name + '")).first_selected_option.text).to eq("' + oStep.value + '")';	
+	} else {
+  	return 'expect(Selenium::WebDriver::Support::Select.new(driver.find_element(:id, "specify_id_here")).first_selected_option.text).to eq("' + oStep.value + '")';			
+	}
+
 }
