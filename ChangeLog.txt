@@ -1,3 +1,7 @@
+1.6.1 (2016-04-12)
+
+- {watir} fixes "expect()to include"
+
 1.6 (2015-04-17)
 - {selenium} change default variable 'browser' to 'driver'
 - {selenium} optimize statement for clicking a radio button

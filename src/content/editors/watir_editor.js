@@ -49,7 +49,7 @@ conversions["verifyTitle"] = function(oStep)
 
 conversions["verifyText"] = function(oStep)
 {
-  return 'expect(browser.text)to include("' + oStep.text + '")'
+  return 'expect(browser.text).to include("' + oStep.text + '")'
 }
 
 conversions["clickLink"] = function(oStep)
